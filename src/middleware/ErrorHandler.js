@@ -9,12 +9,25 @@ class AppError extends Error {
 }
 
 const ErrorHandler = (err, req, res, next) => {
-    console.log('❌ Middleware error handling')
+    console.log('❌ Middleware error handling!')
+
+    // 1. Zod Validation error
+    if (err.name === 'ZodError') {
+        const errors = err.errors.map(e => e.message);
+        return res.status(400).json({
+            status: 'error',
+            code: 'ValidationError',
+            errors
+        });
+    }
+
+    // 2. App error
     const errMsg = err.message || 'Internal server error'
     const errStatus = err.StatusCode || 500
     res.status(errStatus).json({
         status : 'error',
-        message : errMsg,
+        code : 'AppError',
+        msg : errMsg,
         stack : err.stack
     })
 }

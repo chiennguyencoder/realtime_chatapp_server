@@ -4,23 +4,43 @@ import hashProvider from "../provider/hash.provider.js";
 
 const UserSchema = new Schema(
     {
-        email : { type: String, required : true },
-        username : { type : String, required : true },
-        password : { type : String, required : true },
-        avatar : { type : String, default : '', required : false},
+        email : {
+            type: String,
+            required : true,
+            unique : true
+        },
+        username : {
+            type : String,
+            required : true
+        },
+        password : {
+            type : String,
+            required : true 
+        },
+        avatar : { 
+            type : String, 
+            default : '', 
+            required : false},
         friends : [{
             type : mongoose.Schema.Types.ObjectId,
             ref : "User",
             required : false
         }],
-        createdAt : { type : Date, default: Date.now}
+        createdAt : { type : Date, default: Date.now},
+        role : {
+            type : String,
+            enum : ['user', 'admin'],
+            default : 'user',
+            required : true
+        }
     },
     { timestamps: true }
 )
 
-// check hashing password before save to database
-UserSchema.pre('save', async (next) => {
+// Check hashing password before save to database
+UserSchema.pre('save', async function(next){
     try {
+        console.log(this.password)
         this.password = await hashProvider.generateHash(this.password)
         next()
     }

@@ -12,4 +12,4 @@ class HashProvider {
     }
 }
 
-export default HashProvider()
+export default new HashProvider()
