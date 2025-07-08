@@ -9,4 +9,5 @@ UserRouter.route('/')
 
 UserRouter.route('/:id')
     .delete(UserController.deleteOne)
+    .get(UserController.getUserByID)
 export default UserRouter

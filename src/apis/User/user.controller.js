@@ -17,6 +17,20 @@ class UserController {
         }
     }
 
+    async getUserByID(req, res, next){
+        try {
+            const user = await UserService.getUserByID(req.params.id)
+            return res.status(200).json({
+                status : 'success',
+                msg : 'Lấy dữ liệu người dùng thành công.',
+                data : user
+            })
+        }
+        catch(err){
+
+        }
+    }
+
     async createUser(req, res, next){
         try {
             const userData = req.body
