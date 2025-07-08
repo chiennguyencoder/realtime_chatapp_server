@@ -3,7 +3,7 @@ import 'dotenv/config'
 
 const generateAccessToken = async (userData) => {
     return new Promise((resolve, reject) => {
-        const payload = { userID }
+        const payload = { userData }
         const secret = process.env.ACCESS_TOKEN_SECRET || ""
         const options =  {
             expiresIn : process.env.ACCESS_TOKEN_EXPIRES_IN || "10m"

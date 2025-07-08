@@ -1,5 +1,4 @@
-const { default: z } = require("zod");
-
+import z from "zod"
 export const loginValidate = z.object({
     email : z.string().min(1, 'Username không được để trống').email('Email không hợp lệ'),
     password : z.string()
