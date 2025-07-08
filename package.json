@@ -21,6 +21,8 @@
     "express": "^5.1.0",
     "json-server": "^1.0.0-beta.3",
     "jsonwebtoken": "^9.0.2",
+    "module-alias": "^2.2.3",
+    "module-resolver": "^1.0.0",
     "mongodb": "^6.17.0",
     "mongoose": "^8.16.1",
     "zod": "^3.25.75"
@@ -31,7 +33,9 @@
     "@babel/node": "^7.28.0",
     "@babel/preset-env": "^7.28.0",
     "@babel/runtime": "^7.27.6",
+    "babel-plugin-module-resolver": "^5.0.2",
     "morgan": "^1.10.0",
-    "nodemon": "^3.1.10"
+    "nodemon": "^3.1.10",
+    "path": "^0.12.7"
   }
 }

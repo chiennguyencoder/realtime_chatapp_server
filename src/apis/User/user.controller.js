@@ -1,4 +1,3 @@
-import { AppError } from "../../middleware/ErrorHandler.js";
 import UserService from "./user.service.js";
 
 class UserController {
