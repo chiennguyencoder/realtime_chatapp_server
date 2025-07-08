@@ -4,6 +4,7 @@ import * as db from './config/db.config.js'
 import { ErrorHandler, AppError } from './middleware/ErrorHandler.js' 
 import router from './apis/index.js'
 
+
 const app = express()
 const port = 3000
 
