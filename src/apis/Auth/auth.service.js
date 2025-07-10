@@ -41,6 +41,14 @@ class AuthService {
 
         return safeUser
     }
+
+    async verify( verifyEmail, verifyToken ){
+        
+        const isExistEmail = await User.findOne({ email : verifyEmail })
+        if (!isExistEmail){
+            throw new AppError('Email này không tồn tại', 401)
+        }
+    }
 }
 
 export default new AuthService()

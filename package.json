@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "bcryptjs": "^3.0.2",
+    "cookie-session": "^2.1.0",
     "dotenv": "^17.0.1",
     "express": "^5.1.0",
     "json-server": "^1.0.0-beta.3",
@@ -25,6 +26,8 @@
     "module-resolver": "^1.0.0",
     "mongodb": "^6.17.0",
     "mongoose": "^8.16.1",
+    "passport": "^0.7.0",
+    "passport-google-oauth2": "^0.2.0",
     "zod": "^3.25.75"
   },
   "devDependencies": {

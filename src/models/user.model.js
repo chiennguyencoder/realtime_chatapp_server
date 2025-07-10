@@ -7,6 +7,7 @@ const UserSchema = new Schema(
         email : {
             type: String,
             required : true,
+            format : 'email',
             unique : true
         },
         username : {
@@ -18,10 +19,6 @@ const UserSchema = new Schema(
             required : true,
             select : false
         },
-        avatar : { 
-            type : String, 
-            default : '', 
-            required : false},
         friends : [{
             type : mongoose.Schema.Types.ObjectId,
             ref : "User",
@@ -33,6 +30,32 @@ const UserSchema = new Schema(
             enum : ['user', 'admin'],
             default : 'user',
             required : true
+        },
+        
+        profile : {
+            avatar : {
+                type : String,
+                default : ""
+            },
+            gender : {
+                type : String,
+                enum : ["male", "female", "other"],
+                default : ""
+            },
+            phone : {
+                type : String,
+                defautl : ""
+            },
+            dateOfBirth : {
+                type : Date,
+                default : null
+            },
+
+            location : {
+                country : String,
+                city : String,
+                address: String
+            }
         }
     },
     { timestamps: true }
