@@ -6,10 +6,12 @@ import generateAccessToken from '../../provider/jwt.provider.js'
 class AuthService {
     async login(inputEmail, inputPassword){
 
-        const user = await User.findOne({email: inputEmail})
+        const user = await User.findOne({email: inputEmail}).select('password')
         if (!user){
             throw new AppError('Tài khoản không tồn tại', 404)
         }
+
+        console.log(user)
 
         const isValidPassword = await hashProvider.compareHash(inputPassword, user.password)
         if (!isValidPassword){
@@ -42,12 +44,14 @@ class AuthService {
         return safeUser
     }
 
-    async verify( verifyEmail, verifyToken ){
-        
-        const isExistEmail = await User.findOne({ email : verifyEmail })
-        if (!isExistEmail){
-            throw new AppError('Email này không tồn tại', 401)
+    async getProfile(userID){
+        const user = await User.findById(userID)
+
+        if (!user){
+            throw new AppError('Người dùng không tồn tại', 404)
         }
+
+        return user
     }
 }
 

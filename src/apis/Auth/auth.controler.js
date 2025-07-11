@@ -40,6 +40,21 @@ class AuthController {
             next(err)
         }
     }
+
+    async getProfile(req, res, next){
+        try {
+            const user = await AuthService.getProfile(req.params.id)
+            return res.status(200).json({
+                status : 'success',
+                msg : 'Lấy dữ liệu thành công.',
+                data : user
+            })
+        }
+        catch(err){
+            
+        }
+    }
+
 }
 
 export default new AuthController()

@@ -16,7 +16,7 @@ export const verifyAccessToken = async (req, res, next) => {
                 if (err.name == 'TokenExpiredError'){
                     return next(new AppError('Access Token Expired!', 401))
                 }
-                return next(new AppError('Invalid Access Token', 401))
+                return next(new AppError('Invalid Access Token.', 401))
             }
 
             req.user = payload

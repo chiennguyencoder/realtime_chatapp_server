@@ -40,11 +40,11 @@ const UserSchema = new Schema(
             gender : {
                 type : String,
                 enum : ["male", "female", "other"],
-                default : ""
+                default : "other"
             },
             phone : {
                 type : String,
-                defautl : ""
+                default : ""
             },
             dateOfBirth : {
                 type : Date,
@@ -52,9 +52,18 @@ const UserSchema = new Schema(
             },
 
             location : {
-                country : String,
-                city : String,
-                address: String
+                country : {
+                    type : String,
+                    default : ""
+                },
+                city : {
+                    type : String,
+                    default : ""
+                },
+                address: {
+                    type : String,
+                    default : ""
+                }
             }
         }
     },
