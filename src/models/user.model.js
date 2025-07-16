@@ -4,65 +4,95 @@ import hashProvider from "../provider/hash.provider.js";
 
 const UserSchema = new Schema(
     {
-        email : {
+        email: {
             type: String,
-            required : true,
-            format : 'email',
-            unique : true
+            required: true,
+            match: /.+\@.+\..+/,
+            unique: true
         },
-        username : {
-            type : String,
-            required : true
+        username: {
+            type: String,
+            required: true
         },
-        password : {
-            type : String,
-            required : true,
-            select : false
+        password: {
+            type: String,
+            required: true,
+            select: false
         },
-        friends : [{
-            type : mongoose.Schema.Types.ObjectId,
-            ref : "User",
-            required : false
+        friends: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User"
         }],
-        createdAt : { type : Date, default: Date.now},
-        role : {
-            type : String,
-            enum : ['user', 'admin'],
-            default : 'user',
-            required : true
+        createdAt: { type: Date, default: Date.now },
+        role: {
+            type: String,
+            enum: ['user', 'admin'],
+            default: 'user',
+            required: true
         },
-        
-        profile : {
-            avatar : {
-                type : String,
-                default : ""
+
+        provider: {
+                type: String,
+                enum: ['google', 'local'],
+                default: 'local'
+        },
+
+        profile: {
+            avatar: {
+                type: String,
+                default: ""
             },
-            gender : {
-                type : String,
-                enum : ["male", "female", "other"],
-                default : "other"
+            gender: {
+                type: String,
+                enum: ["male", "female", "other"],
+                default: "other"
             },
-            phone : {
-                type : String,
-                default : ""
+            phone: {
+                type: String,
+                default: ""
             },
-            dateOfBirth : {
-                type : Date,
-                default : null
+            dateOfBirth: {
+                type: Date,
+                default: null
             },
 
-            location : {
-                country : {
-                    type : String,
-                    default : ""
+            passwordResetToken : {
+                type : String,
+                select : false
+            },
+
+            passwordResetExpires: {
+                type : Date,
+                select : false
+            },
+
+            location: {
+                country: {
+                    type: String,
+                    default: ""
                 },
-                city : {
-                    type : String,
-                    default : ""
+                city: {
+                    type: String,
+                    default: ""
                 },
                 address: {
-                    type : String,
-                    default : ""
+                    type: String,
+                    default: ""
+                }
+            },
+            
+            emailVerification: {
+                token: {
+                    type: String,
+                    select: false
+                },
+                emailVerificationExpires: {
+                    type: String,
+                    select: false
+                },
+                isEmailVerified: {
+                    type: Boolean,
+                    default: false,
                 }
             }
         }

@@ -20,3 +20,5 @@ const generateAccessToken = async (userData) => {
 }
 
 export default generateAccessToken
+
+
