@@ -27,7 +27,7 @@ class AuthController {
         try {
             const user = await AuthService.register({
                 username : req.body.username,
-                iPassword : req.body.password,
+                password : req.body.password,
                 email : req.body.email
             })
             return res.status(200).json({
@@ -43,15 +43,14 @@ class AuthController {
 
     async getProfile(req, res, next){
         try {
-            const user = await AuthService.getProfile(req.params.id)
+            console.log(req.user)
             return res.status(200).json({
-                status : 'success',
-                msg : 'Lấy dữ liệu thành công.',
-                data : user
+                status : "success",
+                message : "GET USER INFO SUCCESSFULLY!"
             })
         }
         catch(err){
-            
+            next(err)
         }
     }
 

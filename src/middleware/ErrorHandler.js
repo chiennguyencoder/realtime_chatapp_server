@@ -8,7 +8,7 @@ class AppError extends Error {
     }
 }
 
-const ErrorHandler = (err, req, res, next) => {
+const ErrorHandler = (err, req, res) => {
     console.log('❌ Middleware error handling!')
 
     // 1. Zod Validation error

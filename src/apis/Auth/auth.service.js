@@ -6,7 +6,7 @@ import generateAccessToken from '../../provider/jwt.provider.js'
 class AuthService {
     async login(inputEmail, inputPassword){
 
-        const user = await User.findOne({email: inputEmail}).select('password')
+        const user = await User.findOne({email: inputEmail}).select('+password')
         if (!user){
             throw new AppError('Tài khoản không tồn tại', 404)
         }
@@ -24,24 +24,12 @@ class AuthService {
     }
 
     async register(inputData){
-        const {email, iPassword, username} = inputData
-
-        const isExistEmail = await User.findOne({email})
-        if (isExistEmail){
-            throw new AppError('Email này đã được sử dụng.', 400)
-        }
-
-        const hashPassword = await hashProvider.generateHash(iPassword)
-
-        const user = await User.create({
-            username,
-            email,
-            password : hashPassword,
+        const user = new User({
+            ...inputData
         })
-        
-        const {password, ...safeUser} = user.toObject()
 
-        return safeUser
+        await user.save()
+        return user
     }
 
     async getProfile(userID){

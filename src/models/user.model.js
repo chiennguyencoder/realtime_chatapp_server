@@ -7,7 +7,6 @@ const UserSchema = new Schema(
         email: {
             type: String,
             required: true,
-            match: /.+\@.+\..+/,
             unique: true
         },
         username: {
@@ -103,7 +102,7 @@ const UserSchema = new Schema(
 // Check hashing password before save to database
 UserSchema.pre('save', async function(next){
     try {
-        console.log(this.password)
+        console.log('Hash password')
         this.password = await hashProvider.generateHash(this.password)
         next()
     }
