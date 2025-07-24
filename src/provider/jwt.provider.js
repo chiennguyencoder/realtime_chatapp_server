@@ -6,7 +6,7 @@ const generateAccessToken = async (userData) => {
     return new Promise((resolve, reject) => {
         const payload = { userData }
 
-        console.log(process.env.ACCESS_TOKEN_SECRET)
+        // Debugging statement removed to avoid logging sensitive information
 
         const secret = process.env.ACCESS_TOKEN_SECRET || ""
         const options =  {
