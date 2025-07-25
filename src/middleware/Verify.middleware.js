@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import jwt from 'jsonwebtoken'
 import 'dotenv/config'
 import { AppError } from './ErrorHandler.js'
@@ -11,12 +12,12 @@ export const verifyAccessToken = async (req, res, next) => {
         const headers = req.headers['authorization']
         const token = headers.split(' ')[1]
 
-        jwt.verify(token, process.env.ACCESS_TOKEN_SECRET || '', (err, payload) => {
+        jwt.verify(token, process.env?.ACCESS_TOKEN_SECRET || '', (err, payload) => {
             if (err){
                 if (err.name == 'TokenExpiredError'){
                     return next(new AppError('Access Token Expired!', 401))
                 }
-                return next(new AppError('Invalid Access Token', 401))
+                return next(new AppError('Invalid Access Token.', 401))
             }
 
             req.user = payload
@@ -24,6 +25,6 @@ export const verifyAccessToken = async (req, res, next) => {
         return next()
     }
     catch(err){
-        return next(new AppError('Xác thực người dùng thất bại.', 401))
+        return err.name === 'AppError' ? next(err) : next(new AppError('Lỗi xác thực accessToken', 500))
     }
 }

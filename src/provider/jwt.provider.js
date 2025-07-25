@@ -1,9 +1,13 @@
+/* eslint-disable no-undef */
 import jwt from 'jsonwebtoken'
 import 'dotenv/config'
 
 const generateAccessToken = async (userData) => {
     return new Promise((resolve, reject) => {
         const payload = { userData }
+
+        // Debugging statement removed to avoid logging sensitive information
+
         const secret = process.env.ACCESS_TOKEN_SECRET || ""
         const options =  {
             expiresIn : process.env.ACCESS_TOKEN_EXPIRES_IN || "10m"
@@ -20,3 +24,5 @@ const generateAccessToken = async (userData) => {
 }
 
 export default generateAccessToken
+
+

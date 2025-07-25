@@ -4,10 +4,10 @@ import 'dotenv/config'
 async function connect(){
     try {
         await mongoose.connect(process.env.MONGODB_URI)
-        console.log('✅ Kết nối CSDL MongoDB thành công.')
+        console.log('✅ MongoDB database connection successful.')
     }
     catch(err){
-        console.log('❌ Kết nối CSDL MongoDB thất bại.')
+        console.log('❌ MongoDB database connection failed.')
     }
 }
 

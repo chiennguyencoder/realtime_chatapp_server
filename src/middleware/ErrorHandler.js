@@ -24,7 +24,7 @@ const ErrorHandler = (err, req, res, next) => {
     // 2. App error
     const errMsg = err.message || 'Internal server error'
     const errStatus = err.StatusCode || 500
-    res.status(errStatus).json({
+    return res.status(errStatus).json({
         status : 'error',
         code : 'AppError',
         msg : errMsg,
