@@ -25,6 +25,13 @@ class AuthController {
 
     async register(req, res, next){
         try {
+
+            const result = AuthValidate.registerValidate.safeParse(req.body)
+
+            if (!result.success){
+                throw result.error
+            }
+
             const user = await AuthService.register({
                 username : req.body.username,
                 password : req.body.password,
@@ -43,10 +50,13 @@ class AuthController {
 
     async getProfile(req, res, next){
         try {
-            console.log(req.user)
+            
+            const data = await AuthService.getProfile(req.user.userData.id)
+
             return res.status(200).json({
                 status : "success",
-                message : "GET USER INFO SUCCESSFULLY!"
+                message : "GET USER INFO SUCCESSFULLY!",
+                data
             })
         }
         catch(err){

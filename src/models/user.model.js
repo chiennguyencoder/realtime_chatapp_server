@@ -54,45 +54,45 @@ const UserSchema = new Schema(
                 type: Date,
                 default: null
             },
+        },
 
-            passwordResetToken : {
+        passwordResetToken : {
                 type : String,
                 select : false
             },
 
-            passwordResetExpires: {
-                type : Date,
-                select : false
-            },
+        passwordResetExpires: {
+            type : Date,
+            select : false
+        },
 
-            location: {
-                country: {
-                    type: String,
-                    default: ""
-                },
-                city: {
-                    type: String,
-                    default: ""
-                },
-                address: {
-                    type: String,
-                    default: ""
-                }
+        location: {
+            country: {
+                type: String,
+                default: ""
             },
-            
-            emailVerification: {
-                token: {
-                    type: String,
-                    select: false
-                },
-                emailVerificationExpires: {
-                    type: String,
-                    select: false
-                },
-                isEmailVerified: {
-                    type: Boolean,
-                    default: false,
-                }
+            city: {
+                type: String,
+                default: ""
+            },
+            address: {
+                type: String,
+                default: ""
+            }
+        },
+        
+        emailVerification: {
+            token: {
+                type: String,
+                select: false
+            },
+            emailVerificationExpires: {
+                type: Date,
+                select: false
+            },
+            isEmailVerified: {
+                type: Boolean,
+                default: false,
             }
         }
     },

@@ -11,8 +11,6 @@ class AuthService {
             throw new AppError('Tài khoản không tồn tại', 404)
         }
 
-        console.log(user)
-
         const isValidPassword = await hashProvider.compareHash(inputPassword, user.password)
         if (!isValidPassword){
             throw new AppError('Mật khẩu không chính xác', 401)
@@ -34,7 +32,6 @@ class AuthService {
 
     async getProfile(userID){
         const user = await User.findById(userID)
-
         if (!user){
             throw new AppError('Người dùng không tồn tại', 404)
         }
