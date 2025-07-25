@@ -11,7 +11,7 @@ class AuthService {
             throw new AppError('Tài khoản không tồn tại', 404)
         }
 
-        const isValidPassword = await hashProvider.compareHash(inputPassword, user.password)
+        const isValidPassword = hashProvider.compareHash(inputPassword, user.password)
         if (!isValidPassword){
             throw new AppError('Mật khẩu không chính xác', 401)
         }
